@@ -1,0 +1,861 @@
+1)
+
+import java.util.Scanner;
+
+public class Ex1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] consumo = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            consumo[i] = sc.nextInt();
+        }
+
+        int total = soma(consumo);
+        double media = (double) total / n;
+        int acima = acimaMedia(consumo, media);
+
+        System.out.println("Consumo total: " + total);
+        System.out.println("Consumo medio: " + media);
+        System.out.println("Dias acima da media: " + acima);
+    }
+
+    public static int soma(int[] v) {
+        int total = 0;
+        for (int i = 0; i < v.length; i++) {
+            total += v[i];
+        }
+        return total;
+    }
+
+    public static int acimaMedia(int[] v, double media) {
+        int cont = 0;
+        for (int i = 0; i < v.length; i++) {
+            if (v[i] > media) cont++;
+        }
+        return cont;
+    }
+}
+
+2)
+
+import java.util.Scanner;
+
+public class Ex2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] notas = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            notas[i] = sc.nextDouble();
+        }
+
+        System.out.println("Maior nota: " + maior(notas));
+        System.out.println("Menor nota: " + menor(notas));
+        System.out.println("Media da turma: " + media(notas));
+        System.out.println("Quantidade de aprovados: " + aprovados(notas));
+    }
+
+    public static double maior(double[] v) {
+        double m = v[0];
+        for (int i = 1; i < v.length; i++) {
+            if (v[i] > m) m = v[i];
+        }
+        return m;
+    }
+
+    public static double menor(double[] v) {
+        double m = v[0];
+        for (int i = 1; i < v.length; i++) {
+            if (v[i] < m) m = v[i];
+        }
+        return m;
+    }
+
+    public static double media(double[] v) {
+        double soma = 0;
+        for (int i = 0; i < v.length; i++) {
+            soma += v[i];
+        }
+        return soma / v.length;
+    }
+
+    public static int aprovados(double[] v) {
+        int cont = 0;
+        for (int i = 0; i < v.length; i++) {
+            if (v[i] >= 7) cont++;
+        }
+        return cont;
+    }
+}
+
+3)
+
+import java.util.Scanner;
+
+public class Ex3 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] precos = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            precos[i] = sc.nextDouble();
+        }
+
+        int p = sc.nextInt();
+
+        double[] novos = reajuste(precos, p);
+
+        System.out.println("Novos precos:");
+        for (double v : novos) {
+            System.out.printf("%.2f ", v);
+        }
+
+        System.out.println("\nTotal antes: " + soma(precos));
+        System.out.println("Total depois: " + soma(novos));
+    }
+
+    public static double[] reajuste(double[] v, int p) {
+        double[] novo = new double[v.length];
+        for (int i = 0; i < v.length; i++) {
+            novo[i] = v[i] * (1 + p / 100.0);
+        }
+        return novo;
+    }
+
+    public static double soma(double[] v) {
+        double total = 0;
+        for (double x : v) total += x;
+        return total;
+    }
+}
+
+4)
+
+import java.util.Scanner;
+
+public class Ex4 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] v = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            v[i] = sc.nextInt();
+        }
+
+        int x = sc.nextInt();
+
+        int pos = buscar(v, x);
+
+        if (pos != -1) {
+            System.out.println("Codigo encontrado");
+            System.out.println("Primeira posicao: " + pos);
+        } else {
+            System.out.println("Codigo nao encontrado");
+        }
+    }
+
+    public static int buscar(int[] v, int x) {
+        for (int i = 0; i < v.length; i++) {
+            if (v[i] == x) return i;
+        }
+        return -1;
+    }
+}
+
+5)
+
+import java.util.Scanner;
+
+public class Ex5 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] v = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            v[i] = sc.nextInt();
+        }
+
+        System.out.println("Maior producao: " + maior(v));
+        System.out.println("Menor producao: " + menor(v));
+        System.out.println("Maior crescimento consecutivo: " + crescimento(v));
+    }
+
+    public static int maior(int[] v) {
+        int m = v[0];
+        for (int i = 1; i < v.length; i++) {
+            if (v[i] > m) m = v[i];
+        }
+        return m;
+    }
+
+    public static int menor(int[] v) {
+        int m = v[0];
+        for (int i = 1; i < v.length; i++) {
+            if (v[i] < m) m = v[i];
+        }
+        return m;
+    }
+
+    public static int crescimento(int[] v) {
+        int maior = 0;
+        for (int i = 1; i < v.length; i++) {
+            int dif = v[i] - v[i - 1];
+            if (dif > maior) maior = dif;
+        }
+        return maior;
+    }
+}
+
+6)
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Ex6 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        double[] v = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            v[i] = sc.nextDouble();
+        }
+
+        Arrays.sort(v);
+
+        System.out.println("Melhor tempo: " + v[0]);
+        System.out.println("Pior tempo: " + v[v.length - 1]);
+
+        System.out.println("Tres melhores tempos:");
+        for (int i = 0; i < 3; i++) {
+            System.out.print(v[i] + " ");
+        }
+    }
+}
+
+7)
+
+import java.util.Scanner;
+
+public class Ex7 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt();
+        int c = sc.nextInt();
+
+        int[][] m = new int[l][c];
+
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < c; j++) {
+                m[i][j] = sc.nextInt();
+            }
+        }
+
+        int maior = 0;
+
+        for (int i = 0; i < l; i++) {
+            int soma = 0;
+            for (int j = 0; j < c; j++) {
+                soma += m[i][j];
+            }
+
+            System.out.println("Soma da linha " + i + ": " + soma);
+
+            if (i == 0 || soma > maior) {
+                maior = soma;
+            }
+        }
+
+        System.out.println("Maior soma: " + maior);
+    }
+}
+
+8)
+
+import java.util.Scanner;
+
+public class Ex8 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt();
+        int c = sc.nextInt();
+
+        double[][] m = new double[l][c];
+
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < c; j++) {
+                m[i][j] = sc.nextDouble();
+            }
+        }
+
+        int aprovados = 0;
+
+        // média por aluno
+        for (int i = 0; i < l; i++) {
+            double soma = 0;
+            for (int j = 0; j < c; j++) {
+                soma += m[i][j];
+            }
+
+            double media = soma / c;
+            System.out.println("Media do aluno " + i + ": " + media);
+
+            if (media >= 7) aprovados++;
+        }
+
+        // média por avaliação
+        for (int j = 0; j < c; j++) {
+            double soma = 0;
+            for (int i = 0; i < l; i++) {
+                soma += m[i][j];
+            }
+
+            System.out.println("Media da avaliacao " + j + ": " + (soma / l));
+        }
+
+        System.out.println("Quantidade de alunos aprovados: " + aprovados);
+    }
+}
+
+9)
+
+import java.util.Scanner;
+
+public class Ex9 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[][] m = new int[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                m[i][j] = sc.nextInt();
+
+        int dp = 0, ds = 0, total = 0;
+
+        for (int i = 0; i < n; i++) {
+            dp += m[i][i];
+            ds += m[i][n - 1 - i];
+        }
+
+        total = dp + ds;
+        if (n % 2 == 1) {
+            total -= m[n / 2][n / 2];
+        }
+
+        System.out.println("Diagonal principal: " + dp);
+        System.out.println("Diagonal secundaria: " + ds);
+        System.out.println("Total sem repetir: " + total);
+    }
+}
+
+10)
+
+import java.util.Scanner;
+
+public class Ex10 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt();
+        int c = sc.nextInt();
+
+        int[][] m = new int[l][c];
+
+        for (int i = 0; i < l; i++)
+            for (int j = 0; j < c; j++)
+                m[i][j] = sc.nextInt();
+
+        int maiorLinha = 0, idxLinha = 0;
+
+        for (int i = 0; i < l; i++) {
+            int soma = 0;
+            for (int j = 0; j < c; j++) soma += m[i][j];
+
+            System.out.println("Soma linha " + i + ": " + soma);
+
+            if (i == 0 || soma > maiorLinha) {
+                maiorLinha = soma;
+                idxLinha = i;
+            }
+        }
+
+        int maiorCol = 0, idxCol = 0;
+
+        for (int j = 0; j < c; j++) {
+            int soma = 0;
+            for (int i = 0; i < l; i++) soma += m[i][j];
+
+            System.out.println("Soma coluna " + j + ": " + soma);
+
+            if (j == 0 || soma > maiorCol) {
+                maiorCol = soma;
+                idxCol = j;
+            }
+        }
+
+        System.out.println("Linha maior: " + idxLinha);
+        System.out.println("Coluna maior: " + idxCol);
+    }
+}
+
+11)
+
+import java.util.Scanner;
+
+public class Ex11 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt();
+        int c = sc.nextInt();
+
+        int[][] m = new int[l][c];
+
+        for (int i = 0; i < l; i++)
+            for (int j = 0; j < c; j++)
+                m[i][j] = sc.nextInt();
+
+        System.out.println("Transposta:");
+
+        for (int j = 0; j < c; j++) {
+            for (int i = 0; i < l; i++) {
+                System.out.print(m[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+12)
+
+import java.util.*;
+
+public class Ex12 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt();
+        int c = sc.nextInt();
+
+        int[] v = new int[l * c];
+
+        for (int i = 0; i < l * c; i++)
+            v[i] = sc.nextInt();
+
+        int r = sc.nextInt();
+        int s = sc.nextInt();
+
+        if (r * s != v.length) {
+            System.out.println("Impossivel");
+            return;
+        }
+
+        int k = 0;
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < s; j++) {
+                System.out.print(v[k++] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+13)
+
+import java.util.Scanner;
+
+public class Ex13 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt(), c = sc.nextInt();
+        int[][] m = new int[l][c];
+
+        int soma = 0, maior = 0;
+
+        for (int i = 0; i < l; i++)
+            for (int j = 0; j < c; j++) {
+                m[i][j] = sc.nextInt();
+                soma += m[i][j];
+                if (i == 0 && j == 0 || m[i][j] > maior)
+                    maior = m[i][j];
+            }
+
+        int k = sc.nextInt();
+        int cont = 0;
+
+        for (int[] linha : m)
+            for (int val : linha)
+                if (val > k) cont++;
+
+        System.out.println("Media: " + (double)soma/(l*c));
+        System.out.println("Maior: " + maior);
+        System.out.println("Acima de k: " + cont);
+    }
+}
+
+14)
+
+import java.util.Scanner;
+
+public class Ex14 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt(), c = sc.nextInt();
+        int[][] m = new int[l][c];
+
+        int somaTotal = 0;
+
+        for (int i = 0; i < l; i++)
+            for (int j = 0; j < c; j++) {
+                m[i][j] = sc.nextInt();
+                somaTotal += m[i][j];
+            }
+
+        int linhaMaior = 0, maior = Integer.MIN_VALUE;
+
+        for (int i = 0; i < l; i++) {
+            int soma = 0;
+            for (int j = 0; j < c; j++) soma += m[i][j];
+
+            if (soma > maior) {
+                maior = soma;
+                linhaMaior = i;
+            }
+        }
+
+        int colunaMenor = 0, menor = Integer.MAX_VALUE;
+
+        for (int j = 0; j < c; j++) {
+            int soma = 0;
+            for (int i = 0; i < l; i++) soma += m[i][j];
+
+            if (soma < menor) {
+                menor = soma;
+                colunaMenor = j;
+            }
+        }
+
+        double media = (double) somaTotal / (l * c);
+
+        int cont = 0;
+        for (int[] linha : m)
+            for (int val : linha)
+                if (val > media) cont++;
+
+        System.out.println("Linha maior: " + linhaMaior);
+        System.out.println("Coluna menor: " + colunaMenor);
+        System.out.println("Media: " + media);
+        System.out.println("Acima da media: " + cont);
+    }
+}
+
+15)
+
+import java.util.Scanner;
+
+public class Ex15 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[][] m = new int[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                m[i][j] = sc.nextInt();
+
+        boolean diagonalZero = true;
+        for (int i = 0; i < n; i++)
+            if (m[i][i] != 0) diagonalZero = false;
+
+        int maior = Integer.MIN_VALUE, mi = 0, mj = 0;
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                if (i != j && m[i][j] > maior) {
+                    maior = m[i][j];
+                    mi = i;
+                    mj = j;
+                }
+
+        int menorSoma = Integer.MAX_VALUE, linha = 0;
+
+        for (int i = 0; i < n; i++) {
+            int soma = 0;
+            for (int j = 0; j < n; j++) soma += m[i][j];
+
+            if (soma < menorSoma) {
+                menorSoma = soma;
+                linha = i;
+            }
+        }
+
+        System.out.println("Diagonal zero: " + diagonalZero);
+        System.out.println("Maior fora diagonal: " + maior + " (" + mi + "," + mj + ")");
+        System.out.println("Linha menor soma: " + linha);
+    }
+}
+
+16)
+
+import java.util.Scanner;
+
+public class Ex16 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[][] m = new int[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                m[i][j] = sc.nextInt();
+
+        int[] saida = new int[n];
+        int[] chegada = new int[n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) {
+                saida[i] += m[i][j];
+                chegada[j] += m[i][j];
+            }
+
+        int maiorDif = 0, idx = 0;
+
+        for (int i = 0; i < n; i++) {
+            int dif = Math.abs(saida[i] - chegada[i]);
+            if (dif > maiorDif) {
+                maiorDif = dif;
+                idx = i;
+            }
+        }
+
+        boolean simetrica = true;
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                if (m[i][j] != m[j][i]) simetrica = false;
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Saida " + i + ": " + saida[i]);
+            System.out.println("Chegada " + i + ": " + chegada[i]);
+        }
+
+        System.out.println("Maior diferenca: " + idx);
+        System.out.println("Simetrica: " + simetrica);
+    }
+}
+
+17)
+
+import java.util.Scanner;
+
+public class Ex17 {
+
+    public static int kadane(int[] v) {
+        int max = v[0], atual = v[0];
+
+        for (int i = 1; i < v.length; i++) {
+            atual = Math.max(v[i], atual + v[i]);
+            max = Math.max(max, atual);
+        }
+        return max;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt(), c = sc.nextInt();
+        int[][] m = new int[l][c];
+
+        for (int i = 0; i < l; i++)
+            for (int j = 0; j < c; j++)
+                m[i][j] = sc.nextInt();
+
+        int melhorLinha = 0, idxL = 0;
+
+        for (int i = 0; i < l; i++) {
+            int val = kadane(m[i]);
+            if (i == 0 || val > melhorLinha) {
+                melhorLinha = val;
+                idxL = i;
+            }
+        }
+
+        int melhorCol = 0, idxC = 0;
+
+        for (int j = 0; j < c; j++) {
+            int[] col = new int[l];
+            for (int i = 0; i < l; i++) col[i] = m[i][j];
+
+            int val = kadane(col);
+
+            if (j == 0 || val > melhorCol) {
+                melhorCol = val;
+                idxC = j;
+            }
+        }
+
+        System.out.println("Linha: " + melhorLinha + " (" + idxL + ")");
+        System.out.println("Coluna: " + melhorCol + " (" + idxC + ")");
+    }
+}
+
+18)
+
+import java.util.Scanner;
+
+public class Ex18 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt(), c = sc.nextInt();
+        int[][] m = new int[l][c];
+
+        for (int i = 0; i < l; i++)
+            for (int j = 0; j < c; j++)
+                m[i][j] = sc.nextInt();
+
+        int count = 0, maior = Integer.MIN_VALUE, pi = 0, pj = 0;
+
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < c; j++) {
+
+                int val = m[i][j];
+
+                boolean pico = true;
+
+                if (i > 0 && m[i - 1][j] >= val) pico = false;
+                if (i < l - 1 && m[i + 1][j] >= val) pico = false;
+                if (j > 0 && m[i][j - 1] >= val) pico = false;
+                if (j < c - 1 && m[i][j + 1] >= val) pico = false;
+
+                if (pico) {
+                    count++;
+                    if (val > maior) {
+                        maior = val;
+                        pi = i;
+                        pj = j;
+                    }
+                }
+            }
+        }
+
+        System.out.println("Picos: " + count);
+        System.out.println("Maior pico: " + maior + " (" + pi + "," + pj + ")");
+    }
+}
+
+19)
+
+import java.util.Scanner;
+
+public class Ex19 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[][] m = new int[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                m[i][j] = sc.nextInt();
+
+        int base = 0;
+        for (int j = 0; j < n; j++) base += m[0][j];
+
+        int erros = 0;
+
+        for (int i = 0; i < n; i++) {
+            int soma = 0;
+            for (int j = 0; j < n; j++) soma += m[i][j];
+            if (soma != base) erros++;
+        }
+
+        for (int j = 0; j < n; j++) {
+            int soma = 0;
+            for (int i = 0; i < n; i++) soma += m[i][j];
+            if (soma != base) erros++;
+        }
+
+        int dp = 0, ds = 0;
+        for (int i = 0; i < n; i++) {
+            dp += m[i][i];
+            ds += m[i][n - 1 - i];
+        }
+
+        if (dp != base) erros++;
+        if (ds != base) erros++;
+
+        if (erros == 0) {
+            System.out.println("Consistente: sim");
+            System.out.println("Valor: " + base);
+        } else {
+            System.out.println("Consistente: nao");
+            System.out.println("Erros: " + erros);
+        }
+    }
+}
+
+20)
+
+import java.util.Scanner;
+
+public class Ex20 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int l = sc.nextInt(), c = sc.nextInt();
+        int[][] m = new int[l][c];
+
+        for (int i = 0; i < l; i++)
+            for (int j = 0; j < c; j++)
+                m[i][j] = sc.nextInt();
+
+        int k = sc.nextInt();
+
+        int max = 0, linha = 0, ini = 0, fim = 0;
+
+        for (int i = 0; i < l; i++) {
+            int cont = 0, start = 0;
+
+            for (int j = 0; j < c; j++) {
+                if (m[i][j] > k) {
+                    if (cont == 0) start = j;
+                    cont++;
+
+                    if (cont > max) {
+                        max = cont;
+                        linha = i;
+                        ini = start;
+                        fim = j;
+                    }
+                } else {
+                    cont = 0;
+                }
+            }
+        }
+
+        System.out.println("Maior sequencia: " + max);
+        System.out.println("Linha: " + linha);
+        System.out.println("Inicio: " + ini);
+        System.out.println("Fim: " + fim);
+    }
+}
